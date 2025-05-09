@@ -3,7 +3,7 @@
 client_id = "203483cea54cb6169048906a549aaa8d"
 name = "Stocker"
 handle = "stocker-11"
-application_url = "https://thermal-managing-optical-guarantees.trycloudflare.com"
+application_url = "https://atlas-wake-drove-ave.trycloudflare.com"
 embedded = true
 
 [webhooks]
@@ -11,9 +11,9 @@ api_version = "2025-04"
 
 [auth]
 redirect_urls = [
-  "https://thermal-managing-optical-guarantees.trycloudflare.com/auth/callback",
-  "https://thermal-managing-optical-guarantees.trycloudflare.com/auth/shopify/callback",
-  "https://thermal-managing-optical-guarantees.trycloudflare.com/api/auth/callback"
+  "https://atlas-wake-drove-ave.trycloudflare.com/auth/callback",
+  "https://atlas-wake-drove-ave.trycloudflare.com/auth/shopify/callback",
+  "https://atlas-wake-drove-ave.trycloudflare.com/api/auth/callback"
 ]
 
 [pos]

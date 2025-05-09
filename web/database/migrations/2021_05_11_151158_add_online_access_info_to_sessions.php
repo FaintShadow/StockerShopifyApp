@@ -11,7 +11,7 @@ class AddOnlineAccessInfoToSessions extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('sessions', function (Blueprint $table) {
             $table->integer('user_id')->nullable();
@@ -30,7 +30,7 @@ class AddOnlineAccessInfoToSessions extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('sessions', function (Blueprint $table) {
             $table->dropColumn('user_id');

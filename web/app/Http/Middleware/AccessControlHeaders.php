@@ -12,11 +12,11 @@ class AccessControlHeaders
     /**
      * Ensures that Access Control Headers are set for embedded apps.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param Request $request
+     * @param Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next): mixed
     {
         if (Context::$IS_EMBEDDED_APP) {
 

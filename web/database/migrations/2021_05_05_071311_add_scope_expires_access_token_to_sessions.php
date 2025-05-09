@@ -11,7 +11,7 @@ class AddScopeExpiresAccessTokenToSessions extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('sessions', function (Blueprint $table) {
             $table->string('scope')->nullable();
@@ -25,7 +25,7 @@ class AddScopeExpiresAccessTokenToSessions extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('sessions', function (Blueprint $table) {
             $table->dropColumn('scope');

@@ -7,10 +7,11 @@ use App\Lib\Handlers\AppUninstalled;
 use App\Lib\Handlers\Privacy\CustomersDataRequest;
 use App\Lib\Handlers\Privacy\CustomersRedact;
 use App\Lib\Handlers\Privacy\ShopRedact;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\URL;
-use Shopify\Context;
+use Illuminate\Support\ServiceProvider;
 use Shopify\ApiVersion;
+use Shopify\Context;
+use Shopify\Exception\MissingArgumentException;
 use Shopify\Webhooks\Registry;
 use Shopify\Webhooks\Topics;
 
@@ -18,29 +19,25 @@ class AppServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
-     *
-     * @return void
      */
-    public function register()
+    public function register(): void
     {
         //
     }
 
     /**
      * Bootstrap any application services.
-     *
-     * @return void
-     * @throws \Shopify\Exception\MissingArgumentException
+     * @throws MissingArgumentException
      */
-    public function boot()
+    public function boot(): void
     {
-        $host = str_replace('https://', '', env('HOST', 'not_defined'));
+        $host = config('shopify.host');
 
-        $customDomain = env('SHOP_CUSTOM_DOMAIN', null);
+        $customDomain = config('SHOP_CUSTOM_DOMAIN', null);
         Context::initialize(
-            env('SHOPIFY_API_KEY', 'not_defined'),
-            env('SHOPIFY_API_SECRET', 'not_defined'),
-            env('SCOPES', 'not_defined'),
+            config('shopify.api_key', 'not_defined'),
+            config('shopify.api_secret', 'not_defined'),
+            config('shopify.api_scopes', 'not_defined'),
             $host,
             new DbSessionStorage(),
             ApiVersion::LATEST,
@@ -52,7 +49,7 @@ class AppServiceProvider extends ServiceProvider
             (array)$customDomain,
         );
 
-        URL::forceRootUrl("https://$host");
+        URL::useOrigin("https://$host");
         URL::forceScheme('https');
 
         Registry::addHandler(Topics::APP_UNINSTALLED, new AppUninstalled());

@@ -15,11 +15,11 @@ class CspHeader
      *
      * See https://shopify.dev/docs/apps/store/security/iframe-protection for more information
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param Request $request
+     * @param Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next): mixed
     {
         $shop = Utils::sanitizeShopDomain($request->query('shop', ''));
 

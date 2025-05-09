@@ -11,7 +11,7 @@ class ChangeSessionsUserIdType extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('sessions', function (Blueprint $table) {
             $table->bigInteger('user_id')->nullable()->change();

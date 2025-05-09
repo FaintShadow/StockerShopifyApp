@@ -1,5 +1,5 @@
 roles = ["backend"]
 
 [commands]
-dev = "composer serve"
+dev = "php artisan serve"
 build = "composer build"

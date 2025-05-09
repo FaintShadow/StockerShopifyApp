@@ -70,7 +70,7 @@ Route::get('/api/auth/callback', function (Request $request) {
     } else {
         Log::error(
             "Failed to register APP_UNINSTALLED webhook for shop $shop with response body: " .
-                print_r($response->getBody(), true)
+            print_r($response->getBody(), true)
         );
     }
 

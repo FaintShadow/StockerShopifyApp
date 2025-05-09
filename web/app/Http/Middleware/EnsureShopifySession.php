@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Shopify\Clients\Graphql;
 use Shopify\Context;
+use Shopify\Exception\HttpRequestException;
+use Shopify\Exception\MissingArgumentException;
 use Shopify\Utils;
 
 class EnsureShopifySession
@@ -30,12 +32,14 @@ class EnsureShopifySession
     /**
      * Checks if there is currently an active Shopify session.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @param  string  $accessMode
+     * @param Request $request
+     * @param Closure $next
+     * @param string $accessMode
      * @return mixed
+     * @throws MissingArgumentException
+     * @throws HttpRequestException
      */
-    public function handle(Request $request, Closure $next, string $accessMode = self::ACCESS_MODE_OFFLINE)
+    public function handle(Request $request, Closure $next, string $accessMode = self::ACCESS_MODE_OFFLINE): mixed
     {
         switch ($accessMode) {
             case self::ACCESS_MODE_ONLINE:
